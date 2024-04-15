@@ -1,0 +1,6 @@
+123 , basma , This Password Is Not Valid , 10000
+12345 , basma , This Password Is Not Valid , 20000
+12345678 , This Name Is Not Valid , lkjhgfds , 200000
+543246 , basma , @#$%^&*( , 25000
+12345 , basma , asc#bhuio , 60000
+22222 , basma , !@#$%^&*() , 350000

@@ -1,0 +1,4 @@
+101,John Doe,password123,2500
+102,Alice Smith,abc@123,3500
+123 , bassma , !@#$%^&*(()) , 239999
+
