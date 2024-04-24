@@ -114,4 +114,6 @@ public:
 	}
 
 };
+static vector<Client> allClients;
+static vector<Client>::iterator clientIt;
 

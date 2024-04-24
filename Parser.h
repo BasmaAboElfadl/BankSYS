@@ -23,52 +23,36 @@ public:
     // Parse a string line into a Client object
     static Client parseToClient(string line) {
         vector<string> tokens = split(line);
-        if (tokens.size() == 4) {
-            int id = stoi(tokens[0]);
-            string name = tokens[1];
-            string password = tokens[2];
-            double balance = stod(tokens[3]);
-            return Client(id, name, password, balance);
-        }
-        else
-        {
-            // Handle error or return default Client
-            return Client();
-        }
+        Client client;
+        client.setID(stoi(tokens[0]));
+        client.setName(stoi(tokens[1]));
+        client.setPassword(stoi(tokens[2]));
+        client.setBalance(stoi(tokens[3]));
+        return client;
     }
 
     // Parse a string line into an Employee object
     static Employee parseToEmployee(string line)
     {
         vector<string> tokens = split(line);
-        if (tokens.size() == 4) {
-            int id = stoi(tokens[0]);
-            string name = tokens[1];
-            string password = tokens[2];
-            double salary = stod(tokens[3]);
-            return Employee(id, name, password, salary);
-        }
-        else {
-            // Handle error or return default Employee
-            return Employee();
-        }
+        Employee employee;
+        employee.setID(stoi(tokens[0]));
+        employee.setName(stoi(token[1]));
+        employee.setPassword(stoi(tokens[2]));
+        employee.setSalary(stoi(tokens[3]));
+        return employee;
     }
 
     // Parse a string line into an Admin object
     static Admin parseToAdmin(string line) 
     {
         vector<string> tokens = split(line);
-        if (tokens.size() == 4) {
-            int id = stoi(tokens[0]);
-            string name = tokens[1];
-            string password = tokens[2];
-            double salary = stod(tokens[3]);
-            return Admin(id, name, password, salary);
-        }
-        else {
-            // Handle error or return default Admin
-            return Admin();
-        }
+        Admin admin;
+        admin.setID(stoi(tokens[0]));
+        admin.setName(stoi(tokens[1]));
+        admin.setPassword(stoi(tokens[2]));
+        admin.setSalary(stoi(tokens[3]));
+        return admin;
     }
 };
 

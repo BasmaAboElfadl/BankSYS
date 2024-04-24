@@ -10,40 +10,29 @@ class FilesHelper
 {
 public:
 	// Save the last ID to a file
-	static void saveLast(string fileName, int id)
+	static void saveLast(string lastIdfile, int id)
 	{
-		ofstream file(fileName);
-		if (file.is_open())
-		{
-			file << id;
-			file.close();
-		}
+		ofstream file(lastIdfile);
+		file.open(lastIdfile);
+		file << id;
+		file.close();
 	}
 	// Get the last ID from a file
-	static int getLast(string fileName)
+	static int getLast(string lastIdfile)
 	{
-		ifstream file(fileName);
-		int lastID = 0;
-		if (file.is_open())
-		{
-			file >> lastID;
-			file.close();
-		}
-		return lastID;
+		ifstream file(lastIdfile);
+		int id;
+		ifstream file;
+		file.open(lastIdfile);
+		file >> id;
+		return id;
+		
 	}
 	// Save a client to a file
 	static void saveClient(Client c, string fileName)
 	{
 		ofstream file(fileName, ios::app);
-		if (file.is_open())
-		{
-			file << c.getID() << " , " << c.getName() << " , " << c.getPassword() << " , " << c.getBalance() << endl;
-			file.close();
-		}
-		else
-		{
-			cout << "Error: Unable to open file for saving client.\n";
-		}
+		
 	}
 	// Save an employee to a file
 	static void saveEmployee(Employee e, string fileName)
