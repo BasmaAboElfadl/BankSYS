@@ -5,6 +5,7 @@
 #include "Admin.h"
 #include<string>
 #include<vector>
+#include"Parser.h"
 using namespace std;
 class FilesHelper
 {
@@ -29,78 +30,71 @@ public:
 		
 	}
 	// Save a client to a file
-	static void saveClient(Client c, string fileName)
+	static void saveClient(Client c)
 	{
-		ofstream file(fileName, ios::app);
-		
+		int id = getLast("Client_lastId.txt");
+		ofstream file;
+		file.open("Client.txt", ios::app);
+		file << id + 1 << ',' << c.getName() << ',' << c.getPassword() << ',' << c.getBalance() << '\n';
+		file.close();
+		saveLast("Client_lastId.txt", id + 1);
 	}
 	// Save an employee to a file
-	static void saveEmployee(Employee e, string fileName)
+	static void saveEmployee(string dataFile , string lastIdfile , Employee e)
 	{
-		ofstream file(fileName, ios::app);
-		if (file.is_open())
-		{
-			file << e.getID() << " , " << e.getName() << " , " << e.getPassword() << " , " << e.getSalary() << endl;
-			file.close();
-		}
-		else
-		{
-			cout << "Error: Unable to open file for saving employee.\n";
-		}
+		int id = getLast(lastIdfile);
+		ofstream file;
+		file.open(dataFile, ios::app);
+		file << id + 1 << ',' << e.getName() << ',' << e.getPassword() << ',' << e.getSalary() << '\n';
+		file.close();
+		saveLast(lastIdfile, id + 1);
 	}
-	// Save an admin to a file
-	static void saveAdmin(Admin a, string fileName)
-	{
-		ofstream file(fileName, ios::app);
-		if (file.is_open())
-		{
-			file << a.getID() << " , " << a.getName() << " , " << a.getPassword() << " , " << a.getSalary() << endl;
-			file.close();
-		}
-		else
-		{
-			cout << "Error: Unable to open file for saving admin.\n";
-		}
-	}
+
 	// Get clients from file
 	static void getClients()
 	{
-		ifstream file("Client.txt");
+		ifstream file;
 		string line;
-		while (getline(file, line))
+		file.open("Client.txt");
+		while (getline(file,line))
 		{
-			cout << line << endl;
+			allClients.push_back(Parser::parseToClient(line));
 		}
 		file.close();
 	}
 	// Get employees from file
 	static void getEmployees()
 	{
-		ifstream file("Employee.txt");
+		ifstream file;
 		string line;
-		while (getline(file, line))
+		file.open("Employee.txt");
+		while (getline(file , line))
 		{
-			cout << line << endl;
+			allEmployees.push_back(Parser::parseToEmployee(line));
 		}
 		file.close();
 	}
 	// Get admins from file
 	static void getAdmins()
 	{
-		ifstream file("Admin.txt");
+		ifstream file;
 		string line;
-		while (getline(file, line))
+		file.open("Admin.txt");
+		while (getline(file , line))
 		{
-			cout << line << endl;
+			allAdmins.push_back(Parser::parseToAdmin(line));
 		}
 		file.close();
 	}
 	// Clear a file and reset last ID
 	static void clearFile(string fileName, string lastIdFile)
 	{
-		ofstream file(fileName);
+		ofstream file , zeroId;
+		file.open(fileName, ios::trunc);
 		file.close();
-		saveLast(lastIdFile, 0);
+		zeroId.open(lastIdFile);
+		zeroId << 0;
+		zeroId.close();
 	}
 };
 

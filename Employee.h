@@ -43,6 +43,28 @@ public:
 			<< "Salary : " << salary << endl;
 
 	}
+	void addClient(Client& client) {
+		allClients.push_back(client);
+	}
+	//make search with iterator
+	Client* searchClient(int id) {
+		for (clientIt = allClients.begin(); clientIt != allClients.end(); clientIt++) {
+			if (clientIt->getID() == id) {
+				return clientIt._Ptr;
+			}
+		}
+		return NULL;
+	}
+	void listClient() {
+		for (clientIt = allClients.begin(); clientIt != allClients.end(); clientIt++) {
+			clientIt->displayInfo();
+		}
+	}
+	void editClient(int id, string name, string password, double balance) {
+		searchClient(id)->setName(name);
+		searchClient(id)->setPassword(password);
+		searchClient(id)->setBalance(balance);
+	}
 };
 static vector<Employee> allEmployees;
 static vector<Employee>::iterator employeeIt;

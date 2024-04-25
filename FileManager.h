@@ -10,58 +10,76 @@ using namespace std;
 #include "DataSourceInterface.h"
 #include"FilesHelper.h"
 
-class FileManager :
-	public DataSourceInterface
+class FileManager : public DataSourceInterface
 {
         string CLIENT_FILE_PATH;
         string EMPLOYEE_FILE_PATH;
         string ADMIN_FILE_PATH;
-    public:
+private:
         FileManager(const string& clientFilePath, const string& employeeFilePath, const string& adminFilePath)
        : CLIENT_FILE_PATH(clientFilePath), EMPLOYEE_FILE_PATH(employeeFilePath), ADMIN_FILE_PATH(adminFilePath) {}
             
         void addClient(Client client)  {
-            FilesHelper::saveClient(client, "Client.txt");
+            FilesHelper::saveClient(client);
         }
 
         void addEmployee(Employee employee)  {
-            FilesHelper::saveEmployee(employee, "Employee.txt");
+            FilesHelper::saveEmployee("Employee.txt" , "Employee_lastId.txt");
         }
 
         void addAdmin(Admin admin) override {
-            FilesHelper::saveEmployee(admin, "Admin.txt");
+            FilesHelper::saveEmployee("Admin.txt" , "Admin_lastId.txt");
         }
 
-        vector<Client> getAllClients()  {
-            vector<Client> clients;
-            // Read clients from file and populate the vector
-            return clients;
+        void getAllClients() {
+            FilesHelper::getClients();
+       }
+
+        void getAllEmployees() {
+            FilesHelper::getEmployees();
         }
 
-        vector<Employee> getAllEmployees()  {
-            vector<Employee> employees;
-            // Read employees from file and populate the vector
-            return employees;
-        }
-
-        vector<Admin> getAllAdmins()  {
-            vector<Admin> admins;
-            // Read admins from file and populate the vector
-            return admins;
+        void getAllAdmins() {
+            FilesHelper::getAdmins();
         }
 
         void removeAllClients()  {
-            FilesHelper::clearFile("Client.txt", "LastClientId.txt");
+            FilesHelper::clearFile("Client.txt", "Client_lastId.txt");
         }
 
         void removeAllEmployees()  {
-            FilesHelper::clearFile("Employee.txt", "LastEmployeeId.txt");
+            FilesHelper::clearFile("Employee.txt", "Employee_lastId.txt");
         }
 
         void removeAllAdmins()  {
-            FilesHelper::clearFile("Admin.txt", "LastAdminId.txt");
+            FilesHelper::clearFile("Admin.txt", "Admin_lastId.txt");
         }
-   
+
+public:
+    void getAllData() {
+        getAllClients();
+        getAllEmployees();
+        getAllAdmins();
+    }
+    //to deleta all data in file ,then iterate vector
+    void updateClient() {
+        removeAllClients();
+        for (clientIt = allClients.begin(); clientIt != allClients.end(); clientIt++) {
+            addClient(*clientIt);
+        }
+    }
+    void updateEmployee() {
+        removeAllEmployees();
+        for (employeeIt = allEmployees.begin(); employeeIt != allEmployees.end(); employeeIt++) {
+            addEmployee(*employeeIt);
+        }
+    }
+    void updateAdmin() {
+        removeAllAdmins();
+        for (adminIt = allAdmins.begin(); adminIt != allAdmins.end(); adminIt++) {
+            addAdmin(*adminIt);
+        }
+    }
 
 };
 

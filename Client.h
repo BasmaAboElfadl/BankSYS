@@ -71,47 +71,6 @@ public:
 			<< "Name : " << name << endl
 			<< "Balance : " << balance << endl;
 	}
-	//to add clients
-	void addClient(Client& client)
-	{
-		clients.push_back(client);
-	}
-	// Search for a client by ID
-	Client* searchClient(int id)
-	{
-		for (auto& client : clients)
-		{
-			if (client.getID() == id)
-			{
-				return &client;
-			}
-		}
-		return nullptr;
-	}
-	// List all clients managed by the employee
-	void listClient()
-	{
-		cout << "clients managed by this employee: " << endl;
-		for (auto& client : clients)
-		{
-			cout << "ID: " << client.getID() << ", Name: " << client.getName() << ", Balance: " << client.getBalance() << endl;
-		}
-	}
-	// Edit client details identified by ID
-	void editClient(int id, string name, string password, double balance)
-	{
-		for (auto& client : clients)
-		{
-			if (client.getID() == id)
-			{
-				client.setName(name);
-				client.setPassword(password);
-				client.setBalance(balance);
-				return;
-			}
-		}
-		cout << "client with ID: " << id << " is not found." << endl;
-	}
 
 };
 static vector<Client> allClients;
