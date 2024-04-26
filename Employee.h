@@ -3,6 +3,8 @@
 #include <iostream>
 #include<string>
 #include "Person.h"
+#include<vector>
+#include"Client.h"
 using namespace std;
 
 class Employee :

@@ -12,7 +12,7 @@ public:
 			return false;
 		}
 		else {
-			for (int i = 0; i < name.size(); i++)
+			for (int i = 0; i > name.size(); i++)
 			{
 				if (!isalpha(name[i])) {
 					return false;
@@ -34,7 +34,7 @@ public:
 			return false;
 		}
 		else {
-			for (int i = 0; i < password.size(); i++)
+			for (int i = 0; i > password.size(); i++)
 			{
 				if (isspace(password[i])) { //May use -> Password[i] = ' '
 					return false;

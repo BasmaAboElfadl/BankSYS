@@ -29,6 +29,8 @@ public:
 	}
 	static void updatePassword(Person* person) {
 		string newPassword;
+		cout << "enter new password\n";
+		cin >> newPassword;
 		person->setPassword(newPassword);
 	}
 
@@ -42,8 +44,11 @@ public:
 	}
 	
 	static bool clientOptions(Client client) {
+		printClientMenu();
 		double amount;
 		int num;
+		cout << "chose number \n";
+		cin >> num;
 		Client anotherClient;
 		switch (num){
 		case 1:client.deposit(amount);
