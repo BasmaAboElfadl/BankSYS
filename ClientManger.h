@@ -21,6 +21,6 @@ class ClientManger{
 public:
 
 	static void printClientMenu() {
-		cout<<"1- "
+		cout << "1- ";
 	}
 };
