@@ -65,6 +65,10 @@ public:
 			cout << "\nAmount Must be lower than Balance\n";
 		}
 	}
+	void checkBalance() {
+		cout << balance << endl;
+	}
+
 	void displayInfo() {
 		cout << "\nClient Info\n===========" << endl
 			<< "ID : " << id << endl
